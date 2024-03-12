@@ -1,0 +1,47 @@
+Tirsdag 12. marts 2024
+
+Opgave 1
+Skriv 3 udgaver af en funktion, som returnerer summen af tallene 1..n : en iterativ funktion,
+en almindelig rekursiv funktion og en tail rekursiv funktion.
+Skriv 3 udgaver af fakultet-funktionen (fak(n) = n!): en iterativ funktion, en almindelig
+rekursiv funktion og en tail rekursiv funktion.
+Skriv 3 udgaver af fibonacci-funktionen (fib(n) = fib(n-1)+fib(n-2)): en iterativ funktion, en
+almindelig rekursiv funktion og en tail rekursiv funktion.
+Skriv en iterativ og en tail rekursiv metode, der returnerer, om elementerne i en liste er
+stigende.
+
+Opgave 2
+Skriv en ’fun’ extension function isDivisible() på Int klassen. Funktionen skal returnere, om
+en anden Int går op.
+Skriv en lambda extension function (aka. lambda med receiver) på Int klassen med samme
+funktionalitet.
+Skriv en ’fun’ funktion, der beregner gennemsnittet af en ikke-tom liste af tal. Skriv den
+samme mtode, men som en lambda funktion.
+
+Opgave 3
+Create a data class Person with properties name: String and age: Int.
+Program a function findFirst(), that has 2 parameters: a list of persons, and a function with a
+person as parameter and Boolean as return type. The function findFirst() must return the first
+person in the list that satisfies the function given as parameter.
+Use the function as shown here:
+val p30 = findFirst(persons) { it.getAge() < 30 }
+a) Find the first person in the persons list with an age of 44.
+b) Find the first person in the persons list with a name starting with 'S'.
+c) Find the first person in the persons list with a name containing more than one ’i’.
+d) Find the first person in the persons list with an age equal to the length of the name.
+Program a function findAll(), similar to the function findFirst(). The findAll() method must
+return a list of persons satisfying the function given as parameter
+Use the findAll() method with a lambda expression to solve question f-i.
+f) Find all persons with name containing the letter 'i'.
+g) Find all persons with name starting with 'S'.
+h) Find all persons with name of length 5.
+i) Find all persons with name of length at least 6 and age below 40.
+Make a generic funktion named findAllGen() that is an extension function on List<T>. Test
+the function on a List<Person> and a List<Int>.
+
+Opgave 4
+Kod funktionen repeatAction() med parametrene times: Int og initial: Int og increment: Int og
+action(), som er en funktion, der tager en Int som parameter og ikke returnerer noget.
+Metoden skal sørge for at action() udføres times gange. Parameteren til action() skal starte
+med værdien af initial og ved hver gentagelse øges med increment.
+Hint: Se på Kotlin funktionen repeat(), men først efter at du har forsøgt selv.
