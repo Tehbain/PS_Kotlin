@@ -1,0 +1,87 @@
+Opgave 1 fra sidst
+Lav en curry version af funktionen
+fun discountedPrice(discount: Int, price: Double): Double {
+return price * (1 - discount / 100.0)
+}
+Lav en funktion discount10(price: Double), som bruger curry funktionen og returnerer
+prisen med 10 % discount.
+Testen i main() funktionen kunne se således ud:
+fun main() {
+println("Price after 10 % discount = ${discount10(1000.0)}") // 900
+println("Price after 10 % discount = ${discount10(500.0)}") // 450
+}
+
+Opgave 2 fra sidst
+Lav funktion then1(), som tager f: (Int) → Int og g: (Int) → Int som parametre (i den
+rækkefølge) og returnerer en funktion, som returnerer g anvendt på f(x).
+Lav en tilsvarende funktion then2(), som er en extension funktion på typen af den første
+funktion (f), dvs. en extension funktion på (Int) → Int.
+Lav funktion then(), som er en infix generisk funktion, som svarer til then2(), altså er en
+extension funktion på typen (A) → B, hvor A og B er typeparametre.
+Testen i main() kunne se således ud:
+fun main() {
+val f1: (Int) -> Double = { 2.0 * it }
+val f2: (Double) -> Double = { it * it }
+println((1..10).map(then1(f1, f2)))
+println((1..10).map(f1.then2(f2)))
+println((1..10).map(f1 then f2))
+// [4.0, 16.0, 36.0, 64.0, 100.0, 144.0, 196.0, 256.0, 324.0, 400.0]
+}
+
+Opgave 3
+Koden herunder beregner tiden i msek for udførelsen af den rekursive fibonacci funktion
+fib(40). Resultatet af fib(40) findes i variablen result.
+val startTime: Long = System.nanoTime()
+val result: Long = fib(40)
+val endTime: Long = System.nanoTime()
+val duration: Double = (endTime - startTime)/1_000_000.0
+Koden skal generaliseres til en højere ordens funktion valueAndTime(). Denne funktion skal
+tage en funktion block: () → T som parameter og returnere resultatet af funktionen block() og
+tiden for udførelsen af funktionen block() i form af et par af typen Pair<T, Double>.
+Testen i main() kunne se således ud:
+fun main() {
+val (result: Long, duration: Double) = valueAndTime {
+fib(40)
+}
+println(String.format("Result = %,d",result))
+println(String.format("Duration = %.0f ms", duration))
+}
+
+Opgave 4
+Lav en extension function String.tryParse(): Result<Int>. Funktionen skal anvende toInt()
+metoden i String klassen til at parse en string til en Int. Bemærk, at funktionen toInt() kan
+kaste en exception.
+Lav derefter en infix operator funktion Result<Int>.plus(other: Int): Result<Int>, der
+returnerer tallet i Result<Int> lagt sammen med other, hvis værdien af Result er success, og
+Results exception, hvis værdien af Result er failure.
+Testen i main() kunne se således ud:
+fun main() {
+val maybeInt1 = "24"
+val parsedInt1 = maybeInt1.tryParse()
+println("$maybeInt1 parsed : $parsedInt1" )
+println("$maybeInt1 parsed + 8 : " + (parsedInt1 + 8).getOrElse { it })
+val maybeInt2 = "24V"
+val parsedInt2 = maybeInt2.tryParse()
+println("maybeInt2 parsed : $parsedInt2")
+println("$maybeInt2 parsed + 8 : "+ (parsedInt2 + 8).getOrElse { it })
+}
+
+Opgave 5
+Lav en extension metode på den udleverede persistente liste (ex6student.zip):
+fun PList<Double> product(): Double
+Metoden skal returnere produktet af tallene i listen (brug en indre tailrec funktion, som
+anvender head() og tail() funktionerne).
+
+Opgave 6
+I denne opgave skal den udleverede persistente liste bruges (ex6student.zip).
+Udvid klassen PList<T> med følgende funktioner:
+- fun size(): Int, som tæller antal elementer (udover Nil) (brug en tailrec indre funktion).
+- fun replaceHead(t: T): PList<T>, som laver en ny liste med head erstattet af t.
+- fun drop(n: Int): Plist<T>, som laver en ny liste uden de første n elementer (brug en indre
+tailrec funktion).
+- fun reverse(): PList<T>, som laver en ny liste med elementerne i omvendt orden (brug en
+indre tailrec funktion).
+- fun fold(initial: R, operation(acc: R, T) → R): R, som anvender operation() på acc og det
+første element i listen, fulgt af operation() anvendt på resultatet og det andet element i listen,
+fulgt af operation() anvendt på det nye resultat og det tredje element i listen, osv. Altså en
+sædvanlig foldning af listen.

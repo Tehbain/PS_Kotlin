@@ -66,7 +66,6 @@ class reCURSED {
 
         fun rec(n: Int): Int {
             tailrec fun rec(n: Int, a: Int, b: Int): Int {
-                //print(""+n+": " + "a: " + a + ", b: " + b + "  :  "); println("a+b = " + (a+b))
                 return when (n) {
                     0 -> a
                     1 -> b
